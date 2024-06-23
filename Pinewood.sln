@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinewood.App", "Pinewood.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinewood.Domain", "Pinewood.Domain\Pinewood.Domain.csproj", "{283D849D-CC25-4B20-B181-F1F3522DA8DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinewood.WebUI", "Pinewood.WebUI\Pinewood.WebUI.csproj", "{72CA6F8D-00C9-4F24-A010-D61605F5E48F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{283D849D-CC25-4B20-B181-F1F3522DA8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{283D849D-CC25-4B20-B181-F1F3522DA8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{283D849D-CC25-4B20-B181-F1F3522DA8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72CA6F8D-00C9-4F24-A010-D61605F5E48F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CA6F8D-00C9-4F24-A010-D61605F5E48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CA6F8D-00C9-4F24-A010-D61605F5E48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CA6F8D-00C9-4F24-A010-D61605F5E48F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
