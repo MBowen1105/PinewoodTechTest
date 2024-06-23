@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pinewood.App\Pinewood.App.csproj" />
+    <ProjectReference Include="..\Pinewood.Persistence\Pinewood.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

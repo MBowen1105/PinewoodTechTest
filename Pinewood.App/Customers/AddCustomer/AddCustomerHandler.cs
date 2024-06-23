@@ -15,11 +15,11 @@ namespace Pinewood.App.Customers.AddCustomer
         {
             var newCustomer = new Customer { Name = command.Name };
 
-            var result = await CustomerService.AddAsync(newCustomer, cancellationToken);
+            int newId = CustomerService.Add(newCustomer);
 
-            await CustomerService.SaveChangesAsync();
+            CustomerService.SaveChanges();
 
-            var addCustomerCommandResponse = new AddCustomerCommandResponse(result.Id);
+            var addCustomerCommandResponse = new AddCustomerCommandResponse(newId);
 
             return Result<AddCustomerCommandResponse>.Success(addCustomerCommandResponse);
         }

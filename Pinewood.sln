@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinewood.Domain", "Pinewood
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinewood.WebUI", "Pinewood.WebUI\Pinewood.WebUI.csproj", "{72CA6F8D-00C9-4F24-A010-D61605F5E48F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinewood.Persistence", "Pinewood.Persistence\Pinewood.Persistence.csproj", "{D5F8C0D8-BB70-4984-B309-98B265E0406E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{72CA6F8D-00C9-4F24-A010-D61605F5E48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72CA6F8D-00C9-4F24-A010-D61605F5E48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72CA6F8D-00C9-4F24-A010-D61605F5E48F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5F8C0D8-BB70-4984-B309-98B265E0406E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5F8C0D8-BB70-4984-B309-98B265E0406E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5F8C0D8-BB70-4984-B309-98B265E0406E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5F8C0D8-BB70-4984-B309-98B265E0406E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

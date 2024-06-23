@@ -2,8 +2,8 @@
 {
     public interface ICustomerService
     {
-        Task<Customer> AddAsync(Customer customer, CancellationToken cancellationToken);
+        int Add(Customer customer);
 
-        Task<int> SaveChangesAsync();
+        int SaveChanges();
     }
 }

@@ -1,6 +1,12 @@
 using Carter;
+using Pinewood.API;
+using Pinewood.App;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApiServices();
+builder.Services.AddAppServices();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -21,8 +27,3 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

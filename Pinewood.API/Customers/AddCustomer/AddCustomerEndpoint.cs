@@ -24,9 +24,9 @@ namespace Pinewood.API.Customers.AddCustomer
                     return Results.BadRequest(commandResponse.Error);
                 }
 
-                var apiResponse = new AddCustomerApiResponse(commandResponse.Value.Id);
+                string url = $"api/v1/customers/{commandResponse.Value.Id}";
 
-                return Results.Created();
+                return Results.Ok(url);
             }).Produces(StatusCodes.Status201Created)
               .Produces<Error>(StatusCodes.Status400BadRequest)
               .WithName("AddCustomer")
