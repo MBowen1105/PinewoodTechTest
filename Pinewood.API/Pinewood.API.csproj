@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Pinewood.App\Pinewood.App.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Customers\AddCustomer\" />
-  </ItemGroup>
-
 </Project>
