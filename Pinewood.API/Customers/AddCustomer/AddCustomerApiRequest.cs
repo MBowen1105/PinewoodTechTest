@@ -1,4 +1,4 @@
 ﻿namespace Pinewood.API.Customers.AddCustomer
 {
-    public sealed record AddCustomerApiRequest(string Name);
+    public sealed record AddCustomerApiRequest(string Name, string? Email);
 }

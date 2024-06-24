@@ -1,12 +1,13 @@
 using Carter;
 using Pinewood.API;
 using Pinewood.App;
-
+using Pinewood.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApiServices();
 builder.Services.AddAppServices();
+builder.Services.AddPersistenceServices();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

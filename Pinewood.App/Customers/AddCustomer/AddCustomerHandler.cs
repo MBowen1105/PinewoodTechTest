@@ -5,23 +5,29 @@ using Pinewood.Domain.Shared;
 namespace Pinewood.App.Customers.AddCustomer
 {
     public sealed class AddCustomerHandler(
-        ICustomerService CustomerService)
-               : IRequestHandler<AddCustomerCommand,
-           Result<AddCustomerCommandResponse>>
+        ICustomerRepository CustomerRepository)
+               : IRequestHandler<AddCustomerCommand, Result<AddCustomerCommandResponse>>
     {
         public async Task<Result<AddCustomerCommandResponse>> Handle(
-            AddCustomerCommand command,
-            CancellationToken cancellationToken)
+            AddCustomerCommand request, CancellationToken cancellationToken)
         {
-            var newCustomer = new Customer { Name = command.Name };
+            var customer = new Customer
+            {
+                Id = CustomerRepository.NextId(),
+                Name = request.Name,
+                Email = request.Email,
+            };
 
-            int newId = CustomerService.Add(newCustomer);
+            CustomerRepository.Add(customer);
 
-            CustomerService.SaveChanges();
+            CustomerRepository.SaveChanges();
 
-            var addCustomerCommandResponse = new AddCustomerCommandResponse(newId);
+            var response = new AddCustomerCommandResponse(
+                customer.Id,
+                customer.Name,
+                customer.Email);
 
-            return Result<AddCustomerCommandResponse>.Success(addCustomerCommandResponse);
+            return Result<AddCustomerCommandResponse>.Success(response);
         }
     }
 }

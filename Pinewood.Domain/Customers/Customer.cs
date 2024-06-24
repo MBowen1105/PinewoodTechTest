@@ -1,8 +1,10 @@
-﻿namespace Pinewood.Domain.Customers
+﻿using Pinewood.Domain.Shared;
+
+namespace Pinewood.Domain.Customers
 {
-    public sealed class Customer
+    public sealed class Customer : Entity
     {
-        public int Id { get; set; }
         public required string Name { get; set; }
+        public string? Email { get; set; }
     }
 }

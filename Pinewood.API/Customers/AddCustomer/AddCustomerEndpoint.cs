@@ -1,8 +1,6 @@
 ﻿using Carter;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using Pinewood.App.Customers.AddCustomer;
-using Pinewood.Domain.Shared;
 
 namespace Pinewood.API.Customers.AddCustomer
 {
@@ -11,24 +9,27 @@ namespace Pinewood.API.Customers.AddCustomer
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("api/v1/customers", async (
-                ISender sender, 
-                [FromBody] AddCustomerApiRequest apiRequest) =>
+            app.MapPost("/customers", async (IMediator mediator, AddCustomerApiRequest apiRequest) =>
             {
-                var command = new AddCustomerCommand(apiRequest.Name);
+                var command = new AddCustomerCommand(
+                    apiRequest.Name,
+                    apiRequest.Email);
 
-                var commandResponse = await sender.Send(command);
+                var response = await mediator.Send(command);
 
-                if (commandResponse.IsFailure)
+                if (response.IsFailure)
                 {
-                    return Results.BadRequest(commandResponse.Error);
+                    return Results.BadRequest(command);
                 }
 
-                string url = $"api/v1/customers/{commandResponse.Value.Id}";
+                var apiResponse = new AddCustomerCommandResponse(
+                    response.Value.Id,
+                    response.Value.Name,
+                    response.Value.Email);
 
-                return Results.Ok(url);
+                return Results.Created($"/customers/{response.Value.Id}", response);
             }).Produces(StatusCodes.Status201Created)
-              .Produces<Error>(StatusCodes.Status400BadRequest)
+              .Produces(StatusCodes.Status400BadRequest)
               .WithName("AddCustomer")
               .WithTags("Customers");
         }

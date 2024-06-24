@@ -1,4 +1,6 @@
 ﻿using Carter;
+using Pinewood.App;
+using Pinewood.Persistence;
 
 namespace Pinewood.API
 {
@@ -13,6 +15,8 @@ namespace Pinewood.API
                 );
 
             services.AddCarter();
+
+            services.AddScoped<ICustomerRepository, MockCustomerRepository>();
 
             return services;
         }
