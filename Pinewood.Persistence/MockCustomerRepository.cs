@@ -5,7 +5,10 @@ namespace Pinewood.Persistence
 {
     public sealed class MockCustomerRepository : ICustomerRepository
     {
-        private readonly List<Customer> _customers = [];
+        private readonly List<Customer> _customers = [
+            new Customer { Id = 1, Name = "Customer 1", Email = "info@Customer1.com"},
+            new Customer { Id = 2, Name = "Customer 2", Email = "info@Customer2.com"}
+            ];
 
         public int NextId()
         {
@@ -34,27 +37,20 @@ namespace Pinewood.Persistence
             return customer;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             Customer? customer = GetById(id);
             if (customer != null)
             {
                 _customers.Remove(customer);
+                return true;
             }
-        }
-
-        Customer? void Edit(Customer customer)
-        {
-            Customer? thisCustomer = GetById(customer.Id);
-            if (thisCustomer != null)
-            {
-                _customers.Remove(customer);
-            }
+            return false;
         }
 
         public int SaveChanges()
         {
-            throw new NotImplementedException();
+            return 1;
         }
     }
 }

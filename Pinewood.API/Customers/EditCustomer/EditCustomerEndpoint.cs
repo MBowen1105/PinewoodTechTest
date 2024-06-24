@@ -11,12 +11,18 @@ namespace Pinewood.API.Customers.EditCustomer
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPut("/customers/{id:int}", async (IMediator mediator, int id, string name) =>
+            app.MapPut("/customers", async (IMediator mediator, [FromBody] EditCustomerApiRequest request) =>
             {
-                var command = new EditCustomerCommand(id, name);
+                var command = new EditCustomerCommand(
+                    request.Id,
+                    request.Name,
+                    request.Email);
+
                 await mediator.Send(command);
+
                 return Results.NoContent();
-            }).Produces(StatusCodes.Status200OK)
+
+            }).Produces(StatusCodes.Status204NoContent)
               .Produces<Error>(StatusCodes.Status400BadRequest)
               .WithName("EditCustomer")
               .WithTags("Customers");

@@ -1,6 +1,7 @@
 ﻿using Carter;
 using MediatR;
 using Pinewood.App.Customers.GetCustomer;
+using Pinewood.Domain.Shared;
 
 namespace Pinewood.API.Customers.GetCustomer
 {
@@ -12,10 +13,21 @@ namespace Pinewood.API.Customers.GetCustomer
             app.MapGet("/customers/{id:int}", async (IMediator mediator, int id) =>
             {
                 var query = new GetCustomerQuery(id);
-                var customer = await mediator.Send(query);
-                return customer is not null
-                    ? Results.Ok(customer)
-                    : Results.NotFound(new { error = "Customer not found" });
+
+                Result<GetCustomerQueryResponse> response = await mediator.Send(query);
+
+                if (response.IsFailure)
+                {
+                    return Results.NotFound(new { error = response.Error.Description });
+                }
+
+                var getCustomerApiResponse = new GetCustomerApiResponse(
+                    response.Value.Id,
+                    response.Value.Name,
+                    response.Value.Email);
+
+                return Results.Ok(getCustomerApiResponse);
+
             }).Produces(StatusCodes.Status200OK)
               .Produces(StatusCodes.Status404NotFound)
               .WithName("GetCustomer")

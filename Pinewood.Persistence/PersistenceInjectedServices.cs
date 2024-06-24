@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Pinewood.App;
 
 namespace Pinewood.Persistence
 {

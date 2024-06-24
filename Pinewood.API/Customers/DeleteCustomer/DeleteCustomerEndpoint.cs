@@ -1,6 +1,7 @@
 ﻿using Carter;
 using MediatR;
 using Pinewood.App.Customers.DeleteCustomer;
+using Pinewood.Domain.Shared;
 
 namespace Pinewood.API.Customers.DeleteCustomer
 {
@@ -12,12 +13,19 @@ namespace Pinewood.API.Customers.DeleteCustomer
             app.MapDelete("/customers/{id:int}", async (IMediator mediator, int id) =>
             {
                 var command = new DeleteCustomerCommand(id);
-                await mediator.Send(command);
+
+                Result<bool> response = await mediator.Send(command);
+
+                if (response.IsFailure)
+                {
+                    return Results.NotFound(response.Error.Description);
+                }
                 return Results.NoContent();
             })
             .Produces(StatusCodes.Status204NoContent)
-                          .WithName("DeleteCustomer")
-                          .WithTags("Customers");
+            .Produces(StatusCodes.Status404NotFound)
+            .WithName("DeleteCustomer")
+            .WithTags("Customers");
         }
     }
 }
